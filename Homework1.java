@@ -27,7 +27,7 @@ public class Homework1 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         // TODO code application logic here
-        String filePath = "D:/___FALL 2021/CSC 499/Homework 1/Sort Me.txt";
+        String filePath = "Sort Me.txt";
         //System.out.println(readFromFile(filePath));
         String nameList = readFromFile(filePath);
         
