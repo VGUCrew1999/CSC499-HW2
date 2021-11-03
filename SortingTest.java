@@ -27,67 +27,18 @@ public class SortingTest {
         
        //note: this uses the same sorting code as the original program to test if it works
        //get file inputs
-       String sortMePath = "Sort Me.txt";
+       //String sortMePath = "Sort Me.txt";
        String sortedPath = "Sorted.txt";
        String reversedPath = "Reversed.txt";
+       String sortOutPath = "Sorting Output.txt";
+       String revOutPath = "Reversed Output.txt";
         
        
-       //get Sort Me input
-       String sortMe = readFromFile(sortMePath);
+       String sortedOut = readFromFile(sortOutPath);
+       String[] sortedActual = sortedOut.split("\n");
        
-       String[] names= sortMe.split("\n");
-        
-        for (int i = 0; i < names.length; i++) {                        // remove whitespaces
-            names[i] = names[i].replaceAll("\\s", "");
-        }
- 
-        
-        List<Integer> getLengths = new ArrayList<>();
-        
-        
-        for (int i = 0; i < names.length; i++) {                    // store each length category (3, 4, 5, etc) in an array list
-            if(!getLengths.contains(names[i].length())){
-                getLengths.add(names[i].length());
-            }
-        }
-        
-        int[] lengths = new int[getLengths.size()];                 
-        
-        for (int i = 0; i < lengths.length; i++) {
-            lengths[i] = (int)getLengths.get(i);                    // store lengths in an int array for sorting
-        }
-        
-        Arrays.sort(names); // sorts alphbetically                  // built in sorter for alphabetical order
-        
-        Arrays.sort(lengths); // shortest length gets sorted first  // sort lengths in order
-        List<String> sorted = new ArrayList<>();
-        
-        List<String> reversed = new ArrayList<>();          // NEW for HW2 - hold reverse order names
-        
-        for (int i = 0; i < lengths.length; i++) {          // reorganize by length, keeping alphabetical sorting
-            for (int j = 0; j < names.length; j++) {
-                if(names[j].length() == lengths[i]){
-                    sorted.add(names[j]);
-                }
-            }
-        }
-        
-        while(sorted.contains("")){
-            int remove = sorted.indexOf("");
-            sorted.remove(remove);
-        }
-        
-        // code to get reversed order
-        String[] s = new String[sorted.size()];
-        for (int i = 0; i < sorted.size(); i++) {           // make a string copy of list
-                s[i] = sorted.get(i);
-        }
-        String[] r = reverse(s);                            // send to reverse method
-                    
-                    
-        for (int i = 0; i < r.length; i++) {                //  convert back to array list
-            reversed.add(r[i]);
-        }
+       String revOut = readFromFile(revOutPath);
+       String[] reversedActual = revOut.split("\n");
         
         
         
@@ -108,8 +59,18 @@ public class SortingTest {
         
         //convert String arrays to String Lists
         
+        List<String> sorted = new ArrayList<>();
+        List<String> reversed = new ArrayList<>();
         List<String> expectedSort = new ArrayList<>();
         List<String> expectedReverse = new ArrayList<>();
+        
+        for (int i = 0; i < sortedActual.length; i++) {
+            sorted.add(sortedActual[i]);
+        }
+        
+        for (int i = 0; i < reversedActual.length; i++) {
+            reversed.add(reversedActual[i]);
+        }
         
         for (int i = 0; i < expectedNamesS.length; i++) {
             expectedSort.add(expectedNamesS[i]);
@@ -120,6 +81,16 @@ public class SortingTest {
         }
         
         //remove any null string
+        while(sorted.contains("")){
+            int remove = sorted.indexOf("");
+            sorted.remove(remove);
+        }
+        
+        while(reversed.contains("")){
+            int remove = reversed.indexOf("");
+            reversed.remove(remove);
+        }
+        
         while(expectedSort.contains("")){
             int remove = expectedSort.indexOf("");
             expectedSort.remove(remove);
@@ -231,19 +202,4 @@ public class SortingTest {
         }
         return contentBuilder.toString();
     }
-    
-    static String[] reverse(String[] s){
-        String[] r = new String[s.length];
-        List<String> rev = new ArrayList<>();
-        for (int i = s.length-1; i >= 0; i--) {
-            rev.add(s[i]);
-        }
-        
-        for (int i = 0; i < rev.size(); i++) {
-            r[i] = rev.get(i);
-        }
-        
-        return r;
-    }
-    
 }
