@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import java.util.ArrayList;
@@ -68,40 +70,80 @@ public class Homework1 {
                 }
             }
         }
-        String input = " ";
-        do {                                                                    
-            System.out.println("S. Print Normal Order");
-            System.out.println("R. Print Reverse Order");
-            System.out.println("Enter S or R:");
-            input = in.nextLine();
-            
-            switch(input.toLowerCase().charAt(0)){
-                case 's':                                               // print sorted
-                    for (int i = 0; i < sorted.size(); i++) {           // print
-                        System.out.println(sorted.get(i));
-                    }
-                    break;
-                case 'r':                                               // print reversed
-                    String[] s = new String[sorted.size()];
-                    for (int i = 0; i < sorted.size(); i++) {           // make a string copy of list
-                        s[i] = sorted.get(i);
-                    }
-                    String[] r = reverse(s);                            // send to reverse method
-                    
-                    
-                    for (int i = 0; i < r.length; i++) {                //  convert back to array list
-                        reversed.add(r[i]);
-                    }
-                    for (int i = 0; i < reversed.size(); i++) {         // print
-                        System.out.println(reversed.get(i));
-                    }
-                    break;
-                
-                default:
-                    System.out.println("Please enter S or R");
+        
+        //create the file - Normal Sorting
+        try{
+        File outputFileS = new File("Sorting Output.txt");
+        if(!outputFileS.exists()){
+            System.out.println("New Sorting Output file created");
+            outputFileS.createNewFile();
+        }
+        else{
+            System.out.println("Sorting Output file already exists, clearing file.");
+            outputFileS.delete();
+            outputFileS.createNewFile();
+            System.out.println("File Cleared.");
+        }
+        }catch(IOException e){
+            System.out.println("An error has occured");
+        }
+        
+        //put output into file - Normal Sorting
+        try{
+            FileWriter sortOut = new FileWriter("Sorting Output.txt");
+            for (int i = 0; i < sorted.size(); i++) {
+                sortOut.write(sorted.get(i) + "\n");
             }
-            
-        } while (input.toLowerCase().charAt(0) !=  's' && input.toLowerCase().charAt(0) !=  'r');           // NEW for HW2 - choose normal or reverse order; give error if no match
+            System.out.println("Writing to Sorting file");
+            sortOut.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        //create reverse order
+        String[] s = new String[sorted.size()];
+        for (int i = 0; i < sorted.size(); i++) {           // make a string copy of list
+            s[i] = sorted.get(i);
+        }
+        String[] r = reverse(s);                            // send to reverse method
+                    
+                    
+        for (int i = 0; i < r.length; i++) {                //  convert back to array list
+            reversed.add(r[i]);
+        }
+        
+        //create the file - Reverse Sorting
+        try{
+        File outputFileR = new File("Reversed Output.txt");
+        if(!outputFileR.exists()){
+            System.out.println("New Reversed Output file created");
+            outputFileR.createNewFile();
+        }
+        else{
+            System.out.println("Reversed Output file already exists, clearing file.");
+            outputFileR.delete();
+            outputFileR.createNewFile();
+            System.out.println("File Cleared.");
+        }
+        }catch(IOException e){
+            System.out.println("An error has occured");
+        }
+        
+        //put output into file - Reverse Sorting
+        try{
+            FileWriter reverseOut = new FileWriter("Reversed Output.txt");
+            for (int i = 0; i < sorted.size(); i++) {
+                reverseOut.write(reversed.get(i) + "\n");
+            }
+            System.out.println("Writing to Reversed file");
+            reverseOut.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        
+        
+        
     }// end main
     
     private static String readFromFile(String filePath){
