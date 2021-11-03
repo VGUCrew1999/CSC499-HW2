@@ -1,0 +1,30 @@
+# This workflow will build a Java project with Ant
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-ant
+
+name: Java CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Java JDK
+      uses: actions/setup-java@v2.3.1
+      with:
+        java-version: '11'  
+        
+    - name: run sorting app and test
+      run: | 
+        javac Homework1.java
+        java Homework1
+        javac SortingTest.java
+        java SortingTest
+      
