@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.io.File;
 import java.util.stream.Stream;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class SortingTest {
        //String sortMePath = "Sort Me.txt";
        String sortedPath = "Sorted.txt";
        String reversedPath = "Reversed.txt";
-       String sortOutPath = "Sorting Output2.txt";
+       String sortOutPath = "Sorting Output.txt";
        String revOutPath = "Reversed Output.txt";
         
        
@@ -199,6 +200,17 @@ public class SortingTest {
         }
         catch(IOException e){
             e.printStackTrace();
+            try{
+                File failedFile = new File("BuildFailed.txt");
+                if(!failedFile.exists()){
+                    failedFile.createNewFile();
+                }
+                else{
+                    
+                    }
+            }catch(IOException f){
+                    System.out.println("An error has occured");
+        }
         }
         return contentBuilder.toString();
     }
