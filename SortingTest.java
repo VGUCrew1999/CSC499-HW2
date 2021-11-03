@@ -204,4 +204,4 @@ public class SortingTest {
         }
         return contentBuilder.toString();
     }
-}
+}// hotfix - missing try-catch setup
