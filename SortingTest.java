@@ -30,7 +30,7 @@ public class SortingTest {
        //String sortMePath = "Sort Me.txt";
        String sortedPath = "Sorted.txt";
        String reversedPath = "Reversed.txt";
-       String sortOutPath = "Sorting Output.txt";
+       String sortOutPath = "Sorting Output2.txt";
        String revOutPath = "Reversed Output.txt";
         
        
