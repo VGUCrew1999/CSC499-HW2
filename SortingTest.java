@@ -200,17 +200,6 @@ public class SortingTest {
         }
         catch(IOException e){
             e.printStackTrace();
-            try{
-                File failedFile = new File("BuildFailed.txt");
-                if(!failedFile.exists()){
-                    failedFile.createNewFile();
-                }
-                else{
-                    
-                    }
-            }catch(IOException f){
-                    System.out.println("An error has occured");
-        }
         }
         return contentBuilder.toString();
     }
