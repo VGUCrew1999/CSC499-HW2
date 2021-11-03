@@ -73,7 +73,7 @@ public class Homework1 {
         
         //create the file - Normal Sorting
         try{
-        File outputFileS = new File("Sorting Output.txt");
+        File outputFileS = new File("Sorting Output2.txt");
         if(!outputFileS.exists()){
             System.out.println("New Sorting Output file created");
             outputFileS.createNewFile();
